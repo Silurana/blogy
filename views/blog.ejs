@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head -->
+    <%- include('./partials/head.ejs') %>
+        <title>Blog</title>
+
+</head>
+
+<body>
+
+    <!-- NavBar-->
+    <%- include('./partials/nav.ejs') %>
+
+        <!-- <%# JSON.stringify(user ) %> -->
+
+
+        <div class="container mt-4 ">
+            <h2>
+                <%= blog.title %>
+            </h2>
+            <img src="<%= blog.coverImageURL %>" alt="" class="img-fluid my-3" width="700px">
+            <pre><%= blog.content %></pre>
+        </div>
+
+        <div class="container">
+            <img src="<%= blog.createdBy.profileImageURL %>" alt="" width="50px" height="50px"
+                class="rounded-circle mt-4" />
+            <%= blog.createdBy.fullName %>
+        </div>
+
+        <div class="container mt-3">
+            <h1>Comments( <%= comments.length %>)
+            </h1>
+            <% if (locals.user) { %>
+                <form action="/blog/comment/<%= blog._id %>/comment" method="post">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="content" placeholder="Enter your Comment" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+
+                
+
+                <% } %>
+
+                <div class="container">
+                    <% if (comments && comments.length> 0) { %>
+                        <% comments.forEach(comment=> { %>
+                            <div class="container mt-3">
+                                <img src="<%= comment.createdBy.profileImageURL %>" alt="" width="50px" height="50px"
+                                    class="rounded-circle mt-4" />
+                                <strong>
+                                    <%= comment.createdBy.fullName %>
+                                </strong>:
+                                <pre><%= comment.content %></pre>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <p>No comments yet.</p>
+                                    <% } %>
+                </div>
+        </div>
+
+        <!-- BOOTSTRAP-->
+        <%- include('./partials/script.ejs') %>
+</body>
+
+</html>

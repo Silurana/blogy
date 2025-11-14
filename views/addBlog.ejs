@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head -->
+    <%- include('./partials/head.ejs') %>
+        <title>Home Page</title>
+
+</head>
+
+<body>
+
+    <!-- NavBar-->
+    <%- include('./partials/nav.ejs') %>
+
+
+        <div class="container mt-3">
+            <form action="/blog" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="lr" class="form-label">Cover Image</label>
+                    <input type="file" class="form-control" id="coverImage" name="coverImage"
+                        aria-describedby="coverImage">
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter blog title"
+                        aria-describedby="title">
+                </div>
+
+                <div class="mb-3">
+                    <label for="body" class="form-label">Body</label>
+                    <textarea name="body" id="" class="form-control" placeholder="Enter blog body"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Add Blog</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- BOOTSTRAP-->
+        <%- include('./partials/script.ejs') %>
+</body>
+
+</html>
